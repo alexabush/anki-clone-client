@@ -18,6 +18,7 @@ class AddUserForm extends PureComponent {
   };
 
   render() {
+    console.log(process.env);
     return (
       <div className="AddUserForm">
         <Form onSubmit={this.handleSubmit}>
