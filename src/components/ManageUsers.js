@@ -13,7 +13,7 @@ export class ManageUsers extends Component {
   componentDidMount() {
     // implement auth
     console.log('in cdm manage users');
-    fetch(`/api/users`)
+    fetch(`https://alex-anki-clone.herokuapp.com/api/users`)
       .then(res => res.json())
       .then(data => {
         console.log('data', data);
@@ -29,7 +29,7 @@ export class ManageUsers extends Component {
 
   addUser = (name, email, password) => {
     console.log('in showdeck.js addUser');
-    fetch(`/api/users`, {
+    fetch(`https://alex-anki-clone.herokuapp.com/api/users`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',

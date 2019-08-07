@@ -16,7 +16,9 @@ class ShowDeck extends PureComponent {
   componentDidMount() {
     // implement auth
     let { userId, deckId } = this.props.nav.match.params;
-    fetch(`/api/users/${userId}/decks/${deckId}/cards`)
+    fetch(
+      `https://alex-anki-clone.herokuapp.com/api/users/${userId}/decks/${deckId}/cards`
+    )
       .then(res => res.json())
       .then(data => {
         this.setState(state => {
@@ -41,14 +43,17 @@ class ShowDeck extends PureComponent {
 
   addCard = (question, answer) => {
     let { userId, deckId } = this.props.nav.match.params;
-    fetch(`/api/users/${userId}/decks/${deckId}/cards`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ question, answer })
-    })
+    fetch(
+      `https://alex-anki-clone.herokuapp.com/api/users/${userId}/decks/${deckId}/cards`,
+      {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ question, answer })
+      }
+    )
       .then(res => res.json())
       .then(({ card }) => {
         this.setState(prev => {
@@ -63,13 +68,16 @@ class ShowDeck extends PureComponent {
 
   deleteCard = cardId => {
     let { userId, deckId } = this.props.nav.match.params;
-    fetch(`/api/users/${userId}/decks/${deckId}/cards/${cardId}`, {
-      method: 'DELETE',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
+    fetch(
+      `https://alex-anki-clone.herokuapp.com/api/users/${userId}/decks/${deckId}/cards/${cardId}`,
+      {
+        method: 'DELETE',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        }
       }
-    });
+    );
     // bug where if current card is deleted it doesn't get deleted
     this.setState(prev => {
       let modifiedQueue = prev.priorityQueue.removeById(cardId);
@@ -86,14 +94,17 @@ class ShowDeck extends PureComponent {
       [rating]: cardClone[rating],
       priority: calcPriority(easy, medium, hard)
     };
-    fetch(`/api/users/${userId}/decks/${deckId}/cards/${cardId}`, {
-      method: 'PUT',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(updateData)
-    });
+    fetch(
+      `https://alex-anki-clone.herokuapp.com/api/users/${userId}/decks/${deckId}/cards/${cardId}`,
+      {
+        method: 'PUT',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updateData)
+      }
+    );
     this.setState(prev => {
       let prevCard = prev.currentCard;
       prevCard[rating] += 1;
