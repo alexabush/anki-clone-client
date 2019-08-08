@@ -45,27 +45,28 @@ class SelectDeck extends PureComponent {
     let decksLis = this.state.decks.map(({ name, id }) => {
       return (
         <li key={id}>
-          {name}
-          <div>
-            <Link to={`/users/${userId}/decks/${id}/useDeck`}>
-              Use This Deck
-            </Link>{' '}
-          </div>
-          <div>
+          Name: {name}
+          <div className="select-deck--container---deck-links">
+            <Link to={`/users/${userId}/decks/${id}/useDeck`}>Use Deck</Link>{' '}
             <Link to={`/users/${userId}/decks/${id}/manageDeck`}>
               Add/Remove Cards
             </Link>
           </div>
+          <hr />
         </li>
       );
     });
     return (
-      <div>
-        <h1>Select Deck</h1>
-        <ol>{decksLis}</ol>
-        <h2>Add New Deck</h2>
-        <AddDeckForm addDeck={this.addDeck} />
-        <Link to={`/users`}>Back to all users</Link>
+      <div className="select-deck">
+        <div>
+          <h1>Decks</h1>
+          <ol>{decksLis}</ol>
+        </div>
+        <div>
+          <h2>Add New Deck</h2>
+          <AddDeckForm addDeck={this.addDeck} />
+          <Link to={`/users`}>Back to all users</Link>
+        </div>
       </div>
     );
   }

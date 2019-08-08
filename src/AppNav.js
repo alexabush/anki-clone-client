@@ -26,9 +26,8 @@ class AppNav extends PureComponent {
   render() {
     return (
       <Layout>
-        <h1>Flashcards</h1>
         <Router>
-          <div>
+          <>
             <Route exact path="/" component={() => <RedirectComponent />} />
             <Route exact path="/users" component={() => <ManageUsers />} />
             <Route
@@ -44,7 +43,7 @@ class AppNav extends PureComponent {
               path="/users/:userId/decks/:deckId/manageDeck"
               component={ManageDeckOption}
             />
-          </div>
+          </>
         </Router>
       </Layout>
     );

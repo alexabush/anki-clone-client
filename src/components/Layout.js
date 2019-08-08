@@ -7,8 +7,11 @@ export class Layout extends Component {
   render() {
     return (
       <div className="Layout">
-        <p>Inspired by Anki</p>
-        {this.props.children}
+        <header className="layout-header">
+          <h1>Flashcards</h1>
+          <p>Inspired by Anki</p>
+        </header>
+        <main className="layout-main">{this.props.children}</main>
       </div>
     );
   }
